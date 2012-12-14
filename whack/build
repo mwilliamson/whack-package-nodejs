@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+BUILD_DIR=`pwd`/build-dir
+
+NODEJS_DIR=`ls node-v*.tar.gz | sed 's/^\(node-v.*\)\.tar\.gz$/\1/g'`
+
+tar xzf node-v*.tar.gz
+
+cd ${NODEJS_DIR}
+make binary
+
+mkdir -p $BUILD_DIR
+cp node-v*.tar.gz $BUILD_DIR/node.tar.gz
