@@ -2,14 +2,16 @@
 
 set -e
 
-BUILD_DIR=`pwd`/build-dir
+TARGET_DIR=$1
 
-NODEJS_DIR=`ls node-v*.tar.gz | sed 's/^\(node-v.*\)\.tar\.gz$/\1/g'`
+. $(dirname $0)/set-versions
 
-tar xzf node-v*.tar.gz
+NODEJS_DIR=node-v${NODEJS_VERSION}
+
+tar xzf node-v${NODEJS_VERSION}.tar.gz
 
 cd ${NODEJS_DIR}
 make binary
 
-mkdir -p $BUILD_DIR
-cp node-v*.tar.gz $BUILD_DIR/node.tar.gz
+mkdir -p ${TARGET_DIR}
+tar xzf node-v*.tar.gz --directory ${TARGET_DIR} --strip-components 1

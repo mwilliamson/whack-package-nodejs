@@ -1,9 +1,0 @@
-#!/bin/sh
-
-set -e
-
-BUILD_DIR=`pwd`/build-dir
-INSTALL_DIR=$1
-
-mkdir -p $INSTALL_DIR
-tar xzf $BUILD_DIR/node.tar.gz --directory $INSTALL_DIR --strip-components 1
